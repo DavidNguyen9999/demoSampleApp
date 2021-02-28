@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token, :reset_token
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   before_save :downcase_email
@@ -68,7 +70,6 @@ class User < ApplicationRecord
     #update_attribute(:reset_digest, User.digest(reset_token))
     #update_attribute(:reset_sent_at, Time.zone.now)
   end
-    
 
   # Sends password reset email.
   def send_password_reset_email
@@ -78,6 +79,12 @@ class User < ApplicationRecord
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private
