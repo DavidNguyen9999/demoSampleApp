@@ -1,0 +1,12 @@
+one:
+  follower: admin
+  followed: lana
+two:
+  follower: admin
+  followed: malory
+three:
+  follower: lana
+  followed: admin
+four:
+  follower: archer
+  followed: admin
