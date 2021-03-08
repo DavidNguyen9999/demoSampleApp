@@ -9,6 +9,11 @@ gem 'image_processing', '1.9.3'
 gem 'mini_magick', '4.9.5'
 gem 'active_storage_validations', '0.8.9'
 
+# Login with Social Networking
+gem "devise"
+gem "omniauth", "~> 1.9.1"
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-facebook', '~> 4.0'
 
 gem "bootstrap-sass", "3.4.1"
 
