@@ -8,7 +8,11 @@ jobs:
       - image: cimg/ruby:3.0.0-browsers
     steps:
       - checkout
+        run:
+            name: bundle install
+            command: |
+              bundle check --path vendor/bundle || bundle install --jobs=4 --retry=3 --path vendor/bundle
       # Run rubocop  
       - run:  
           name: Run rubocop  
-          command: bundle exec rubocop
+          command: bundle exec rubocop app
