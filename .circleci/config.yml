@@ -11,6 +11,9 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
+      -run:
+          name: Update Bundle
+          command: bundle update
       - ruby/bundle-install
       # Run rubocop  
       - run:  
