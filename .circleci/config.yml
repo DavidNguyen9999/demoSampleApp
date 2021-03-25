@@ -18,6 +18,5 @@ jobs:
       # Run rubocop  
       - run:  
           name: Run rubocop  
-          command: |
-            bundle exec rubocop app/models
-            bundle exec rubocop app/controllers
+          command:  bundle exec rubocop app/models app/controllers
+           
