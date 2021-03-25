@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: bundle install
-          command: |
-            bundle check --path vendor/bundle || bundle install --jobs=4 --retry=3 --path vendor/bundle
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
       # Run rubocop  
       - run:  
           name: Run rubocop  
