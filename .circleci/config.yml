@@ -34,7 +34,7 @@ jobs:
           EOF
       - run: chmod 600 ~/.netrc 
       - run: heroku git:remote -a pure-wildwood-68673
-      - run: git push heroku master:master
+      - run: git push heroku master
       - run: heroku run rails db:migrate --app pure-wildwood-68673
 
 workflows:
