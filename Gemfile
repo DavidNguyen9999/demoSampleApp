@@ -43,7 +43,6 @@ gem "bcrypt", "3.1.13"
 gem 'faker', '2.11.0'
 gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'rubocop'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
