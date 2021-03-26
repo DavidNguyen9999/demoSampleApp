@@ -23,6 +23,7 @@ jobs:
       - run:
           name: Run rspec
           command: bundle exec rspec
+
   deploy:
     machine: true
     steps:
