@@ -18,25 +18,24 @@ jobs:
       # Run rubocop  
       - run:  
           name: Run rubocop  
-          command:  bundle exec rubocop app/models app/controllers
-           
-deploy:
-  machine: true
-  steps:
-    - checkout
-    - run: |-
-        cat >> ~/.netrc \<<EOF
-          machine api.heroku.com
-            login $HEROKU_USERNAME
-            password $HEROKU_PASSWORD
-          machine git.heroku.com
-            login $HEROKU_USERNAME
-            password $HEROKU_PASSWORD
-        EOF
-    - run: chmod 600 ~/.netrc 
-    - run: heroku git:remote -a pure-wildwood-68673
-    - run: git push heroku master:master -f
-    - run: heroku run rails db:migrate --app pure-wildwood-68673
+          command:  bundle exec rubocop app/models app/controllers       
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run: |-
+          cat >> ~/.netrc \<<EOF
+            machine api.heroku.com
+              login $HEROKU_USERNAME
+              password $HEROKU_PASSWORD
+            machine git.heroku.com
+              login $HEROKU_USERNAME
+              password $HEROKU_PASSWORD
+          EOF
+      - run: chmod 600 ~/.netrc 
+      - run: heroku git:remote -a pure-wildwood-68673
+      - run: git push heroku setupCircleCi:master
+      - run: heroku run rails db:migrate --app pure-wildwood-68673
 
 workflows:
   version: 2.1
@@ -46,6 +45,3 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: master
