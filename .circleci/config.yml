@@ -18,7 +18,11 @@ jobs:
       # Run rubocop  
       - run:  
           name: Run rubocop  
-          command:  bundle exec rubocop app/models/user.rb       
+          command: bundle exec rubocop app/models app/controllers app/helpers
+      # Run Rspec
+      - run:
+          name: Run rspec
+          command: bundle exec rspec
   deploy:
     machine: true
     steps:

@@ -1,17 +1,12 @@
+# frozen_string_literal: true
+
+# Class ApplicationRecord
 class StaticPagesController < ApplicationController
-  def home
-#    if user_signed_in?
-#      @micropost = current_user.microposts.build
-#      @feed_items = current_user.feed.paginate(page: params[:page])
-#    end
-  end
+  def home; end
 
-  def help
-  end
+  def help; end
 
-  def about
-  end
+  def about; end
 
-  def contact
-  end
+  def contact; end
 end
