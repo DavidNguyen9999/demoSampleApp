@@ -2,7 +2,7 @@
 
 # Class MicropostsController
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: %i[create destroy]
+  before_action :user_signed_in?, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def micropost_save(micropost)
