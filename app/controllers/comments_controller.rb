@@ -2,6 +2,7 @@
 
 # Class CommentsController
 class CommentsController < ApplicationController
+  before_action :set_locale
   before_action :set_comment, only: [:destroy]
   before_action :new_comment, only: [:create]
 
@@ -13,9 +14,8 @@ class CommentsController < ApplicationController
   def create
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment.post, notice: 'Comment được tạo thành công' }
+        format.html { redirect_to @comment.post, notice: t('controllers.comments.create.create_comment') }
         format.js
-        format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -24,11 +24,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    # redirect_back(fallback_location: @comments) # Not Ajax
+    # redirect_back(fallback_location: @comments, notice: t('controllers.comments.destroy.destroy_success')) # Not Ajax
     respond_to do |format|
-      format.html { redirect_to @comment, notice: 'Product was successfully destroyed.' }
-      format.js
+      if @comment.destroy
+        format.html { redirect_to @comment, notice: t('controllers.comments.destroy.destroy_success') }
+        format.js
+      else
+        format.html {redirect_to @comment ,notice: t('controllers.comments.destroy.destroy_fails')}
+        format.json {render json: @comment.errors, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -44,5 +48,13 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_locale
+    I18n.locale = locale || I18n.default_locale
+  end
+
+  def default_url_options
+    {locale: I18n.locale}
   end
 end
