@@ -30,8 +30,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment, notice: t('controllers.comments.destroy.destroy_success') }
         format.js
       else
-        format.html {redirect_to @comment ,notice: t('controllers.comments.destroy.destroy_fails')}
-        format.json {render json: @comment.errors, status: :unprocessable_entity}
+        format.html { redirect_to @comment, notice: t('controllers.comments.destroy.destroy_fails') }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,6 +55,6 @@ class CommentsController < ApplicationController
   end
 
   def default_url_options
-    {locale: I18n.locale}
+    { locale: I18n.locale }
   end
 end
