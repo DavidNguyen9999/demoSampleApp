@@ -10,6 +10,7 @@ jobs:
       RAILS_ENV: test  
     steps:
       - checkout
+      - sudo apt install -y mysql-client
       - run:
           name: Which bundler?
           command: bundle -v
