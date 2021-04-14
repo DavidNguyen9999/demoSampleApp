@@ -45,6 +45,7 @@ gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop'
 
+
 # gem for nested comment
 gem "closure_tree"
 
@@ -55,7 +56,12 @@ group :development, :test do
   # Use mysql as the database for Active Record
   gem "mysql2", "~> 0.5"
 
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'paperclip'
+  gem 'pry'
+  gem "pry-byebug"
 end
 
 group :development do
@@ -79,7 +85,9 @@ group :test do
   gem "minitest", "5.11.3"
   gem "minitest-reporters", "1.3.8"
   gem "guard", "2.16.2"
+  gem 'guard-rspec'
   gem "guard-minitest", "2.4.6"
+  gem 'database_cleaner'
 end
 
 group :production do

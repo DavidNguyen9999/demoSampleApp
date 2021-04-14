@@ -6,18 +6,14 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
   before_action :new_comment, only: [:create]
 
-  def index
-    @comments = Comment.all
-    @comment = Comment.new
-  end
-
+  
   def create
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment.post, notice: t('controllers.comments.create.create_comment') }
+        format.html { redirect_to @comment, notice: t('controllers.comments.create.create_comment') }
         format.js
       else
-        format.html { render :new }
+        format.html { redirect_to @comment}
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
