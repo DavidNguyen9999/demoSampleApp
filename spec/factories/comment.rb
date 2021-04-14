@@ -5,3 +5,4 @@ FactoryBot.define do
       micropost
     end
   end
+  
