@@ -11,6 +11,7 @@ jobs:
       - image: circleci/mysql:8.0.19-ram
         environment:
           MYSQL_USER: davidnguyen
+          MYSQL_PASSWORD: 12345asdfg
           MYSQL_DB: sample_app_test
     steps:
       - checkout
