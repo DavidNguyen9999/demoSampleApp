@@ -14,7 +14,13 @@ jobs:
           MYSQL_DB: sample_app_test
     steps:
       - checkout
-      
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - run:
+          name: Update Bundle
+          command: bundle update
+      - ruby/bundle-install
       #setup database
       - run:
           name: setup database
