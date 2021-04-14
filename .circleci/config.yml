@@ -6,6 +6,8 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.0-browsers
+    environment:
+      RAILS_ENV: test  
     steps:
       - checkout
       - run:
@@ -15,6 +17,10 @@ jobs:
           name: Update Bundle
           command: bundle update
       - ruby/bundle-install
+      #setup database
+      - run:
+          name: setup database
+          command: bundle exec rails db:migrate
       # Run rubocop  
       - run:  
           name: Run rubocop  
