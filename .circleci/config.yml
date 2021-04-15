@@ -10,8 +10,7 @@ jobs:
           RAILS_ENV: test  
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_USER: davidnguyen
-          MYSQL_PASSWORD: 12345asdfg
+          MYSQL_USER: root
           MYSQL_DB: sample_app_test
     steps:
       - checkout
