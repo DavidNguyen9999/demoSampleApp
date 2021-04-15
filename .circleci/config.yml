@@ -12,6 +12,7 @@ jobs:
         environment:
           MYSQL_USER: davidnguyen
           MYSQL_PASSWORD: 12345asdfg
+          MYSQL_HOST: localhost
           MYSQL_DB: sample_app_test
     steps:
       - checkout
