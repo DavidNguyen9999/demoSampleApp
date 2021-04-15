@@ -24,7 +24,6 @@ jobs:
           command: bundle update
       - ruby/bundle-install
       #setup database
-      - run: cp -v config/database.yml
       - run: bundle exec rails db:create
       - run: bundle exec rails db:schema:load
       # Run rubocop  
