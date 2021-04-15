@@ -12,3 +12,4 @@ default: &default
 test:
   <<: *default
   database: sample_app_test
+  

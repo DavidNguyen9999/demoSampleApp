@@ -8,9 +8,7 @@ jobs:
       - image: cimg/ruby:3.0.0-browsers
         environment:
           RAILS_ENV: test  
-          MYSQL_HOST: 127.0.0.1
       - image: circleci/mysql:5.7
-        
         environment:
           MYSQL_USER: davidnguyen
           MYSQL_PASSWORD: 12345asdfg
