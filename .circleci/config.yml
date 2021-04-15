@@ -24,9 +24,9 @@ jobs:
           command: bundle update
       - ruby/bundle-install
       #setup database
-      - run:
-          name: setup database
-          command: bundle exec rails db:migrate
+      - run: cp -v config/database.ci.yml config/database.yml
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:schema:load
       # Run rubocop  
       - run:  
           name: Run rubocop  
