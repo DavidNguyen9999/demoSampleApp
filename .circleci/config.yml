@@ -25,6 +25,7 @@ jobs:
           command: bundle update
       - ruby/bundle-install
       #setup database
+      - run: cp -v config/database.ci.yml config/database.yml
       - run:
           name: Setup DB
           command: bundle exec rails db:create db:schema:load --trace
