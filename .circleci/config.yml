@@ -8,10 +8,13 @@ jobs:
       - image: cimg/ruby:3.0.0-browsers
         environment:
           RAILS_ENV: test  
+          DB_HOST: 127.0.0.1
       - image: circleci/mysql:5.7
         environment:
           MYSQL_USER: root
-          MYSQL_DB: sample_app_test
+          MYSQL_PASSWORD: '1'
+          MYSQL_DATABASE: sample_app_test
+          MYSQL_ROOT_HOST: '%'
     steps:
       - checkout
       - run:
@@ -22,9 +25,9 @@ jobs:
           command: bundle update
       - ruby/bundle-install
       #setup database
-      - run: cp -v config/database.ci.yml config/database.yml
-      - run: bundle exec rails db:create
-      - run: bundle exec rails db:schema:load
+      - run:
+          name: Setup DB
+          command: bundle exec rails db:create db:schema:load --trace
       # Run rubocop  
       - run:  
           name: Run rubocop  
