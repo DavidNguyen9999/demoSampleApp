@@ -29,6 +29,11 @@ jobs:
       - run:
           name: Setup DB
           command: bundle exec rails db:create db:schema:load --trace
+      #setup Yarn and webpack
+      - run:
+          name: yarn Install
+          command: yarn install
+      - run: bundle exec bin/webpack
       # Run rubocop  
       - run:  
           name: Run rubocop  
