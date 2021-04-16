@@ -11,8 +11,7 @@ jobs:
           DB_HOST: 127.0.0.1
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_USER: root
-          MYSQL_PASSWORD: '1'
+          MYSQL_ROOT_PASSWORD: 1
           MYSQL_DATABASE: sample_app_test
           MYSQL_ROOT_HOST: '%'
     steps:
