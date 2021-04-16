@@ -6,15 +6,7 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.0-browsers
-        environment:
-          RAILS_ENV: test  
-          DB_HOST: 127.0.0.1
-      - image: circleci/mysql:8.0.23
-        command: [--default-authentication-plugin=mysql_native_password]
-        environment:
-          MYSQL_ROOT_PASSWORD: 1
-          MYSQL_DATABASE: sample_app_test
-          MYSQL_ROOT_HOST: '%'
+        
     steps:
       - checkout
       - run:
@@ -24,16 +16,7 @@ jobs:
           name: Update Bundle
           command: bundle update
       - ruby/bundle-install
-      #setup database
-      - run: cp -v config/database.ci.yml config/database.yml
-      - run:
-          name: Setup DB
-          command: bundle exec rails db:create db:schema:load --trace
-      #setup Yarn and webpack
-      - run:
-          name: yarn Install
-          command: yarn install
-      - run: bundle exec bin/webpack
+      
       # Run rubocop  
       - run:  
           name: Run rubocop  
