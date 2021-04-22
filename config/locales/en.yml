@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  
+  controllers:
+    comments:
+      create:
+        create_comment: "Comment created"
+      destroy:
+        destroy_success: "successfully destroyed."
+        destroy_fails: "destroy failed"

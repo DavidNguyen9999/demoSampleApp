@@ -10,6 +10,7 @@ module SampleApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.i18n.default_locale = :en
 
     ## Use Vips for processing variants.
     #config.active_storage.variant_processor = :vips

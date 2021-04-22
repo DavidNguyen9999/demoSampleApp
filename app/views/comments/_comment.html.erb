@@ -1,0 +1,11 @@
+<ol id="comments-rp<%= comment.micropost.id %>">
+  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <span class="content"><%= comment.content %></span>
+  <span class="timestamp">
+    <%= comment.created_at.to_s %>
+    <% if current_user?(comment.user) %>
+      <%= link_to "delete", comment, method: :delete, data: { confirm: 'You sure?' }, remote: true, class: "destroy_comment" %>
+    <% end %>
+  </span>
+  </br></br>
+</ol>

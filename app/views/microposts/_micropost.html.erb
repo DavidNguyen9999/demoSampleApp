@@ -11,4 +11,22 @@
       <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  </br>
+  <% @comments = micropost.comments %>
+  <span id="comments<%= micropost.id%>">
+    <h3>Comment:</h3>
+    <%= render @comments %>
+  </span>
+  <% if user_signed_in? %>
+    <span id="form-comment">
+      <%= form_for(@comment, remote: true) do |f| %>
+        <div class="field">
+          <%= f.hidden_field :micropost_id, value: micropost.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.text_area :content, placeholder: "Nhập Nội Dung Cho Comment." %>
+        </div>
+        <%= f.submit "Tạo Comment", class: "btn btn-primary" %>
+      <% end %>
+    </span>
+  <% end %>
 </li>
