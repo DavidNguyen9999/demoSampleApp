@@ -25,4 +25,10 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :comments, only: [:index, :create, :destroy]
+  resources :comments do
+    member do
+      put "like", to: "comments#like"
+      put "dislike", to: "comments#dislike"
+    end
+  end
 end

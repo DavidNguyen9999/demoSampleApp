@@ -31,6 +31,24 @@ class CommentsController < ApplicationController
     end
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    @comment.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to @comment }
+      format.js { render :vote }
+    end
+  end
+
+  def dislike
+    @comment = Comment.find(params[:id])
+    @comment.disliked_by current_user
+    respond_to do |format|
+      format.html { redirect_to @comment }
+      format.js { render :vote }
+    end
+  end
+
   private
 
   def comment_params
