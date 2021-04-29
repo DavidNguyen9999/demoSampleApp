@@ -1,15 +1,15 @@
-<div id="vote_form">
-    <% if user_signed_in? %>
-      <% if (current_user.voted_down_on? comment) || (!ActsAsVotable::Vote.where(voter_id: current_user,votable_id: comment.id).present?) %>
-        <%= link_to like_comment_path(comment), method: :put, remote: true do |f| %>
-          <span class="glyphicon glyphicon-heart-empty"></span>
-        <% end %>
-      <% else %>
-        <%= link_to dislike_comment_path(comment), method: :put, remote: true do |f| %>
-          <span class="glyphicon glyphicon-heart"></span>
-        <% end %>
+<div id="vote_form<%= comment.id%>">
+  <% if user_signed_in? %>
+    <% if (current_user.voted_down_on? comment) || (!ActsAsVotable::Vote.where(voter_id: current_user,votable_id: comment.id).present?) %>
+      <%= link_to like_comment_path(comment), method: :put, remote: true do |f| %>
+        <span class="glyphicon glyphicon-heart-empty"></span>
+      <% end %>
+    <% else %>
+      <%= link_to dislike_comment_path(comment), method: :put, remote: true do |f| %>
+        <span class="glyphicon glyphicon-heart"></span>
       <% end %>
     <% end %>
-    <%= t "comments.show.like" %> <%= comment.get_upvotes.size %>
-    <%= raw comment.votes_for.up.by_type(User).voters.map { |voter| link_to voter.name, voter }.join(', ') %>
+  <% end %>
+  <%= t "comments.show.like" %> <%= comment.get_upvotes.size %>
+  <%= raw comment.votes_for.up.by_type(User).voters.map { |voter| link_to voter.name, voter }.join(', ') %>
 </div>
