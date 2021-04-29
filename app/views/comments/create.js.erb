@@ -1,2 +1,9 @@
-$("#comments<%= @comment.micropost_id %>").append("<%= j render(@comment) %>")
-$('#form-comment form textarea').val('');
+<%if !@comment.parent_id.present?%>
+    $("#commentss<%= @comment.micropost_id %>").append("<%= j render(@comment) %>")
+<%end%>
+
+$("#comment<%= @comment.parent_id %>").children(".comments-children").append("<%= j render("comments/comment", comment: @comment) %>")
+
+$('#form-comment form textarea').val('')
+
+$('#form-comment<%= @comment.parent_id %> form textarea').val('')

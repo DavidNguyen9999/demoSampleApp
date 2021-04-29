@@ -1,13 +1,33 @@
-<ol id="comments-rp<%= comment.micropost.id %>">
+<div id="commentss<%= comment.micropost.id%>">
+<ol id="comments<%= comment.micropost.id %>" >
   <span class="user"><%= link_to comment.user.name, comment.user %></span>
   <span class="content"><%= comment.content %></span>
+  <span class="content"><%= comment.parent_id %></span>
   <span class="timestamp">
     <%= comment.created_at.to_s %>
     <% if current_user?(comment.user) %>
       <%= link_to "delete", comment, method: :delete, data: { confirm: 'You sure?' }, remote: true, class: "destroy_comment" %>
     <% end %>
   </span>
+  <a href="#form-comment<%= comment.id %>" aria-expanded="false" data-toggle="collapse">Reply</a>
   <% @comments = comment %>
   <%= render "comments/vote_form", comment: @comments %>
+  <div id="comment<%= comment.id %>">
+    <ul class="comments-children">
+        <%= render comment.childrens if comment.childrens.present? %> 
+    </ul>
+    <ul class="collapse" id="form-comment<%= comment.id %>">
+      <%= form_for(Comment.new(), html: { method: "post", remote: true }) do |f| %>
+        <div class="field">
+          <%= f.hidden_field :parent_id, value: comment.id %>
+          <%= f.hidden_field :micropost_id, value: comment.micropost.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.text_area :content, placeholder: "Nhập Nội Dung Cho Comment." %>
+        </div>
+        <%= f.submit "Reply Comment", class: "btn btn-primary" %>
+      <% end %>
+    </ul>
+  </div>
   </br></br>
 </ol>
+</div>

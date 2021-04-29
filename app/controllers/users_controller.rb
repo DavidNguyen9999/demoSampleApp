@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @comment = Comment.new
     @post = Micropost.find(params[:id])
     @comments = @post.comments.all
+    @comments = Comment.hash_tree
   end
 
   def edit
