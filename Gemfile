@@ -47,6 +47,7 @@ gem 'rubocop'
 
 #gem for like comment
 gem "acts_as_votable"
+
 # gem for nested comment
 gem "closure_tree"
 
