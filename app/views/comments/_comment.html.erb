@@ -7,5 +7,7 @@
       <%= link_to "delete", comment, method: :delete, data: { confirm: 'You sure?' }, remote: true, class: "destroy_comment" %>
     <% end %>
   </span>
+  <% @comments = comment %>
+  <%= render "comments/vote_form", comment: @comments %>
   </br></br>
 </ol>

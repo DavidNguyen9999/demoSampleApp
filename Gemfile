@@ -45,6 +45,8 @@ gem 'will_paginate', '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop'
 
+#gem for like comment
+gem "acts_as_votable"
 
 # gem for nested comment
 gem "closure_tree"
