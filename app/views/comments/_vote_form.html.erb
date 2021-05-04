@@ -10,6 +10,6 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= t "comments.show.like" %> <%= comment.get_upvotes.size %>
+  <%= comment.get_upvotes.size %> <%= t "comments.show.like" %>
   <%= raw comment.votes_for.up.by_type(User).voters.map { |voter| link_to voter.name, voter }.join(', ') %>
 </div>

@@ -52,15 +52,24 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit :micropost_id, :user_id, :content
+    params.require(:comment).permit :micropost_id, :user_id, :content, :parent_id
   end
 
   def new_comment
-    @comment = Comment.new(comment_params)
+    if params[:comment][:parent_id].to_i.positive?
+      parent = Comment.find_by id: params[:comment].delete(:parent_id)
+      @comment = parent.children.build comment_params
+    else
+      @comment = Comment.new(comment_params)
+    end
   end
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def destroy_all_children
+    @comment.descendants.each(&:destroy)
   end
 
   def set_locale
