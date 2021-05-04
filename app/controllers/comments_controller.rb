@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   before_action :set_locale
   before_action :set_comment, only: [:destroy]
   before_action :new_comment, only: [:create]
-  before_action :destroy_all_children, only: [:destroy]
 
   def create
     respond_to do |format|
