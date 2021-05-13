@@ -1,0 +1,7 @@
+<% if notification.seen == false %>
+  <%= link_to "Đánh dấu đã xem",
+              notification, 
+              remote: true,
+              method: :put,
+              id: "seen-button-notification-#{notification.id}" %>
+<% end %>

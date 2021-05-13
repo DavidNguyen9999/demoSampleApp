@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', edit: 'edit', confirmation: 'confirmations' },
                                             controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   #get "password_resets/new"
@@ -31,4 +32,6 @@ Rails.application.routes.draw do
       put "dislike", to: "comments#dislike"
     end
   end
+  mount ActionCable.server => '/cable'
+  resources :notifications
 end

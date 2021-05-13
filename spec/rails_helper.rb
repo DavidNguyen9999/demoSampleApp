@@ -67,7 +67,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::ControllerHelpers, type: :controller
-
+  
   config.include Paperclip::Shoulda::Matchers
 
   config.include FactoryBot::Syntax::Methods
@@ -78,4 +78,6 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
+  config.include ActionCable::TestHelper
 end

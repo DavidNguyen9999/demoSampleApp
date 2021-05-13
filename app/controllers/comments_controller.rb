@@ -5,10 +5,12 @@ class CommentsController < ApplicationController
   before_action :set_locale
   before_action :set_comment, only: [:destroy]
   before_action :new_comment, only: [:create]
+  before_action :set_micropost, only: [:create]
 
   def create
     respond_to do |format|
       if @comment.save
+        create_notification(@comment)
         format.html { redirect_to @comment, notice: t('controllers.comments.create.create_comment') }
         format.js
       else
@@ -68,6 +70,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+  def set_micropost
+    @micropost = Micropost.find(@comment.micropost_id)
+  end
+
   def destroy_all_children
     @comment.descendants.each(&:destroy)
   end
@@ -78,5 +84,9 @@ class CommentsController < ApplicationController
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def create_notification(comment)
+    comment.notifications.create(user_id: @micropost.user_id, notified_by_id: current_user.id, event: 'New Comment')
   end
 end

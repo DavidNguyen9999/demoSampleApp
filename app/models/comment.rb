@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
   has_many :childrens, class_name: 'Comment', foreign_key: 'parent_id'
   belongs_to :user
   belongs_to :micropost
+  has_many :notifications, dependent: :destroy, as: :notificationable
 
   validates :user, presence: true
   validates :content, presence: true, length: { maximum: 140 }

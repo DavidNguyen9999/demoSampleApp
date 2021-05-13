@@ -1,0 +1,33 @@
+<% if notification.seen == false %>
+  <a class="content" href="/page.html">
+  <% user_create_action = user_create_action(notification) %>
+  <div class="notification-item<%notification.id%>">
+    <span class="user"><%= link_to user_create_action.name, user_create_action %></span>
+    <span class="content"> <%= " had #{notification.event.downcase} to you" %></span>
+    <div>
+      <span><%= time_ago_in_words(notification.created_at) %> ago.</span>
+      <span class="notification-seen-btn"><%= render 'notifications/seen_button', notification: notification %></span>
+    </div>
+    <h4 class="item-title"><%= link_to notification.notificationable_type + ":", notification %>
+      <i class="item-info"><%= item_info(notification) %></i>
+    </h4>
+  </div>
+  </a>
+<% end %>
+
+<% if notification.seen == true %>
+  <a class="content" href="/page.html">
+  <% user_create_action = user_create_action(notification) %>
+  <div class="notification-item<%notification.id%>", style="background:white" >
+    <span class="user"><%= link_to user_create_action.name, user_create_action %></span>
+    <span class="content"> <%= " had #{notification.event.downcase} to you" %></span>
+    <div>
+      <span><%= time_ago_in_words(notification.created_at) %> ago.</span>
+      <span class="notification-seen-btn"><%= render 'notifications/seen_button', notification: notification %></span>
+    </div>
+    <h4 class="item-title"><%= link_to notification.notificationable_type + ":", notification %>
+      <i class="item-info"><%= item_info(notification) %></i>
+    </h4>
+  </div>
+  </a>
+<% end %>
