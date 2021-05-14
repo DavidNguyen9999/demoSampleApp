@@ -64,6 +64,7 @@ group :development, :test do
   gem 'paperclip'
   gem 'pry'
   gem "pry-byebug"
+  gem 'action-cable-testing'
 end
 
 group :development do

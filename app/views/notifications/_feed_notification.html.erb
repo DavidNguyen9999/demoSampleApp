@@ -1,0 +1,39 @@
+<div class="dropdown-notifications">
+  <a id="notifications-label" role="button" data-toggle="dropdown">
+    <i class="glyphicon glyphicon-bell"></i>
+    <span id='notifications-counter'>
+      <%=notifications.unviewed.count%>
+      <%if !notifications.unviewed.present?%>
+        <style>
+          #notifications-counter{
+            visibility : hidden
+          }
+        </style>
+      <%end%>
+    </span>
+  </a>
+  <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+    <div class="notification-heading">
+      <h4 class="menu-title">Notifications</h4>
+      <h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+    </div>
+    <li class="divider"></li>
+    <div class="notifications-wrapper" id='notifications-list'>
+      <% if current_user.notifications.any? %>
+        <% current_user.notifications.each do |notification| %>
+          <%= render notification %>
+        <% end %>
+      <% end %>
+    </div>
+    <li class="divider"></li>
+    <div class="notification-footer"></div>
+  </ul>
+</div>
+
+<script>
+  let counter = $("#notifications-counter")
+  $("#notifications-label").click(function () {
+    counter.css("visibility", "hidden")
+    counter.html(0)
+  });
+</script>
