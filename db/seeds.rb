@@ -11,7 +11,6 @@ User.create!(name: "Example User",
              email: "example@gmail.com",
              password: "123456",
              password_confirmation: "123456",
-             admin: true,
              confirmed_at: Time.zone.now)
 # Generate a bunch of additional users.
 99.times do |n|
