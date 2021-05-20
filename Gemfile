@@ -51,6 +51,9 @@ gem "acts_as_votable"
 # gem for nested comment
 gem "closure_tree"
 
+# gem for role user
+gem "cancancan"
+gem "rolify"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -65,6 +68,7 @@ group :development, :test do
   gem 'pry'
   gem "pry-byebug"
   gem 'action-cable-testing'
+
 end
 
 group :development do

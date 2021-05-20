@@ -21,7 +21,7 @@
     <div class="notifications-wrapper" id='notifications-list'>
       <% if current_user.notifications.any? %>
         <% current_user.notifications.each do |notification| %>
-          <%= render notification %>
+          <%= render "notifications/notification", notification: notification %>
         <% end %>
       <% end %>
     </div>

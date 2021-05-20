@@ -2,8 +2,15 @@
 
 # Class ApplicationController
 class ApplicationController < ActionController::Base
+  check_authorization unless: :do_not_check_authorization?
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  private
+
+  def do_not_check_authorization?
+    respond_to?(:devise_controller?)
+  end
 
   protected
 

@@ -2,6 +2,8 @@
 
 # Class NotificationsController
 class NotificationsController < ApplicationController
+  load_and_authorize_resource
+
   def show
     @notification = current_user.notifications.find(params[:id])
     @notification.update(seen: true)

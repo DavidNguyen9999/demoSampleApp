@@ -2,8 +2,8 @@
 
 # Class CommentsController
 class CommentsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_locale
-  before_action :set_comment, only: [:destroy]
   before_action :new_comment, only: [:create]
   before_action :set_micropost, only: [:create]
 
@@ -34,7 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def like
-    @comment = Comment.find(params[:id])
     @comment.liked_by current_user
     respond_to do |format|
       format.html { redirect_to @comment }
@@ -43,7 +42,6 @@ class CommentsController < ApplicationController
   end
 
   def dislike
-    @comment = Comment.find(params[:id])
     @comment.disliked_by current_user
     respond_to do |format|
       format.html { redirect_to @comment }
@@ -64,10 +62,6 @@ class CommentsController < ApplicationController
     else
       @comment = Comment.new(comment_params)
     end
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
   end
 
   def set_micropost
