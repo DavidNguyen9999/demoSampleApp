@@ -39,3 +39,8 @@ en:
       destroy:
         destroy_success: "successfully destroyed."
         destroy_fails: "destroy failed"
+  
+  header_csv:
+    name: Full Name
+    content: Post
+    created_at: Date

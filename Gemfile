@@ -55,6 +55,12 @@ gem "closure_tree"
 gem "cancancan"
 gem "rolify"
 
+# gem for export csv_file
+gem 'csv'
+
+# gem for create zip_file
+gem 'rubyzip', require: 'zip'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
