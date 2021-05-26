@@ -17,7 +17,7 @@ class ExportCsvController < ApplicationController
 
   def export_csv_to_hash
     @hash = {}
-    @hash[:csv_post] = ExportCsvService.new Micropost.last_month.by_user(current_user), Micropost::CSV_ATTRIBUTES
+    @hash[:csv_post] = ExportCsvService.new current_user.microposts.last_month, Micropost::CSV_ATTRIBUTES
     @hash[:csv_following] = ExportCsvService.new current_user.following_last_month, User::CSV_ATTRIBUTES
     @hash[:csv_followers] = ExportCsvService.new current_user.followed_last_month, User::CSV_ATTRIBUTES
   end
