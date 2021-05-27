@@ -5,20 +5,20 @@ describe ExportCsvController, type: :controller do
   let(:another_user) { create(:Another_user) }
   let!(:micropost) { user.microposts.create(content: 'Lorem ipsum') }
   let(:micropost_csv) do
-    ExportCsvService.new Micropost.last_month.by_user(user), Micropost::CSV_ATTRIBUTES
+    ExportCsvService.new user
   end
   let(:following_csv) do
-    ExportCsvService.new user.following_last_month, User::CSV_ATTRIBUTES
+    ExportCsvService.new user
   end
   let(:followers_csv) do
-    ExportCsvService.new user.followed_last_month, User::CSV_ATTRIBUTES
+    ExportCsvService.new user
   end
   context 'when user is logged in' do
     let(:hash) do 
       { 
-        :micropost_csv => micropost_csv,
-        :following_csv => following_csv,
-        :followers_csv => followers_csv
+        :micropost_csv => micropost_csv.microposts,
+        :following_csv => following_csv.following,
+        :followers_csv => followers_csv.followed
       }
     end
     before(:each) do

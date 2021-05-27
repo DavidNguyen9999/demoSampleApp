@@ -17,16 +17,17 @@ class ExportCsvController < ApplicationController
 
   def export_csv_to_hash
     @hash = {}
-    @hash[:csv_post] = ExportCsvService.new current_user.microposts.last_month, Micropost::CSV_ATTRIBUTES
-    @hash[:csv_following] = ExportCsvService.new current_user.following_last_month, User::CSV_ATTRIBUTES
-    @hash[:csv_followers] = ExportCsvService.new current_user.followed_last_month, User::CSV_ATTRIBUTES
+    export_csv_service = ExportCsvService.new current_user
+    @hash[:csv_post] = export_csv_service.microposts
+    @hash[:csv_following] = export_csv_service.following
+    @hash[:csv_followers] = export_csv_service.followed
   end
 
   def add_hash_csv_to_zip
     @compressed_filestream = Zip::OutputStream.write_buffer do |f|
       @hash.each do |key, value|
         f.put_next_entry "#{key}.csv"
-        f.print value.perform
+        f.print value
       end
     end
   end
