@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   end
   mount ActionCable.server => '/cable'
   resources :notifications
-  resources :export_csv, only: %i[index]
+  get "/export_csv", to: "export_csv#index"
 end
