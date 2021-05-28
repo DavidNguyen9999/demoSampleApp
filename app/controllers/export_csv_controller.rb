@@ -3,8 +3,7 @@
 # Class ExportCsvController
 class ExportCsvController < ApplicationController
   def index
-    export_csv_to_hash
-    add_hash_csv_to_zip
+    add_csv_to_zip
     respond_to do |format|
       format.zip do
         @compressed_filestream.rewind
@@ -15,17 +14,18 @@ class ExportCsvController < ApplicationController
 
   private
 
-  def export_csv_to_hash
-    @hash = {}
+  def export_csv
+    csv_files = {}
     export_csv_service = ExportCsvService.new current_user
-    @hash[:csv_post] = export_csv_service.microposts
-    @hash[:csv_following] = export_csv_service.following
-    @hash[:csv_followers] = export_csv_service.followed
+    csv_files[:csv_post] = export_csv_service.microposts
+    csv_files[:csv_following] = export_csv_service.following
+    csv_files[:csv_followers] = export_csv_service.followed
+    csv_files
   end
 
-  def add_hash_csv_to_zip
+  def add_csv_to_zip
     @compressed_filestream = Zip::OutputStream.write_buffer do |f|
-      @hash.each do |key, value|
+      export_csv.each do |key, value|
         f.put_next_entry "#{key}.csv"
         f.print value
       end
