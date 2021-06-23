@@ -5,4 +5,3 @@ class DailyReportJob < ApplicationJob
     DailyReportSlackService.new.create_report
   end
 end
-  

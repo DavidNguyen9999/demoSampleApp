@@ -67,4 +67,3 @@ class DailyReportSlackService
     }
   end
 end
-  
