@@ -132,4 +132,12 @@ Rails.application.configure do
     :domain => "heroku.com",
     :enable_starttls_auto => true,
   }
+
+  config.middleware.use ExceptionNotification::Rack,
+    slack: {
+      webhook_url: "https://hooks.slack.com/services/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", #  webhook URL
+      additional_parameters: {
+        mrkdwn: true
+      }
+    }
 end

@@ -8,6 +8,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'devise'
 require 'pry'
+require "vcr"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -80,4 +81,9 @@ RSpec.configure do |config|
   end
 
   config.include ActionCable::TestHelper
+
+  VCR.configure do |config|
+    config.cassette_library_dir = "spec/vcr"
+    config.hook_into :webmock
+  end
 end
