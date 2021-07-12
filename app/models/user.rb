@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :messages
+  has_many :discords
+  has_one :authen_discord, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
   scope :last_month, -> { where(created_at: (Time.now - 1.month)..Time.now) }
   scope :new_users, -> { where(created_at: (Time.now - 1.day)..Time.now) }
@@ -58,6 +60,14 @@ class User < ApplicationRecord
     user.save
   end
 
+  def self.create_authen_discord(user, access_token)
+    user.create_authen_discord(
+      email: user.email,
+      access_token: access_token.credentials.token,
+      refresh_token: access_token.credentials.refresh_token
+    )
+  end
+
   def self.find_for_google_oauth2(access_token)
     data = access_token.info
     registered_user = User.where(email: data['email']).first
@@ -84,5 +94,18 @@ class User < ApplicationRecord
                                     image: data['image'], password: Devise.friendly_token[0, 20])
     skip_confirm_and_save(user)
     user
+  end
+
+  def self.find_for_discord_oauth(access_token)
+    data = access_token.info
+    registered_user = User.where(email: data['email']).first
+    if registered_user
+      create_authen_discord(registered_user, access_token)
+      return registered_user
+    end
+    user = User.where(uid: access_token[:uid])
+               .first_or_create(name: data['name'], provider: access_token[:provider],
+                                email: data['email'], uid: access_token[:uid], password: Devise.friendly_token[0, 20])
+    create_authen_discord(user, access_token)
   end
 end

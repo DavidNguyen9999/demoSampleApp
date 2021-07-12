@@ -563,3 +563,13 @@ span.image {
 .chat-partner-name, .chat-group-name {
     padding: 0 0 0 75px;
 }
+
+.discord {
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+    a:hover {
+      color: greenyellow;
+    }
+}
