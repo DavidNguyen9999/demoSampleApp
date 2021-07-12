@@ -70,6 +70,10 @@ gem 'csv'
 # gem for create zip_file
 gem 'rubyzip', require: 'zip'
 
+#gem connect discord
+gem 'discordrb', '3.3.0'
+gem 'omniauth-discord'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
