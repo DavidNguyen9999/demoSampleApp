@@ -73,6 +73,7 @@ gem 'rubyzip', require: 'zip'
 #gem connect discord
 gem 'discordrb', '3.3.0'
 gem 'omniauth-discord'
+gem "rbnacl-libsodium"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
