@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :conversations, foreign_key: :sender_id
   scope :last_month, -> { where(created_at: (Time.now - 1.month)..Time.now) }
+  scope :new_users, -> { where(created_at: (Time.now - 1.day)..Time.now) }
 
   CSV_ATTRIBUTES = %w[name created_at].freeze
 
