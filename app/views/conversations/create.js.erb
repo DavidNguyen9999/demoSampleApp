@@ -1,0 +1,3 @@
+$("#chat-list").html(
+  "<%= escape_javascript(render('conversations/conversation_box', conversation: @conversation, recipient: @recipient)) %>"
+);

@@ -19,6 +19,7 @@
             <% @notifications = Notification.all%>
             <%= render 'notifications/feed_notification', notifications: @notifications %>
           </li>
+          <%= render 'conversations/conversation' %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle inline" data-toggle="dropdown">
               <!--<%= image_tag gravatar_for (current_user)%>-->

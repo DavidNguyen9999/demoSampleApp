@@ -1,0 +1,5 @@
+$("#text-field-errors-chat-<%= @conversation.id %>").empty()
+$("#list-massages-<%= @conversation.id %>").append(
+    "<%= escape_javascript(render('messages/message', message: @message, current_user: current_user)) %>"
+)
+$("#text-field-chat-<%= @conversation.id %>").val("")

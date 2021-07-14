@@ -1,0 +1,7 @@
+<%= form_for(Message.new(), html: { method: "post", remote: true }) do |f| %>
+  <ul id="text-field-errors-chat-<%= conversation.id.to_s %>"></ul>
+  <%= f.text_area :content, id: 'text-field-chat-' + conversation.id.to_s %>
+  <%= f.hidden_field :conversation_id, class: "chat-input", value: conversation.id %>
+  <%= f.hidden_field :recipient_id, class: "chat-input", value: recipient.id %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>

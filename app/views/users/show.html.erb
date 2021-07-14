@@ -10,6 +10,9 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
+      <% if current_user.id != @user.id %>
+        <%= link_to 'Inbox',conversations_path(recipient_id: @user.id), method: :post, remote: true %>
+      <% end %>
     </section>
   </aside>
   <div class="col-md-8">

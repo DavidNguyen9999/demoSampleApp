@@ -1,0 +1,30 @@
+<div id="chat-box-<%= conversation.id %>" class="chatbox">
+  <div class="chatbox-top">
+    <div class="chatbox-avatar">
+      <%= image_tag(gravatar_for recipient, size: 50) %>
+    </div>
+    <div class="chat-partner-name">
+      <span class="status"></span>
+      <%= link_to recipient.name, recipient %>
+    </div>
+    <div>
+      <button type="button" class = "btn btn-danger" onclick="closeForm()" id = "close_btt">X</button>
+    </div>
+  </div>
+
+  <div id="list-massages-<%= conversation.id %>" class="chat-messages">
+    <% if conversation.messages.any? %>
+      <%= render conversation.messages %>
+    <% end %>
+  </div>
+
+  <div class="chat-input-holder">
+    <%= render('conversations/conversation_form', conversation: conversation, recipient: recipient) %>
+  </div>
+</div>
+
+<script>
+  function closeForm() {
+    $("#chat-box-<%= conversation.id %>").css("display","none")
+  }
+</script>

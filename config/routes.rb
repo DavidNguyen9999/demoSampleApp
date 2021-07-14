@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', edit: 'edit', confirmation: 'confirmations' },
-                                            controllers: {omniauth_callbacks: 'omniauth_callbacks'}
+  get "notifications/index"
+  devise_for :users, path: "", path_names: { sign_in: "login", sign_out: "logout", edit: "edit", confirmation: "confirmations" },
+                     controllers: { omniauth_callbacks: "omniauth_callbacks" }
   #get "password_resets/new"
   #get "password_resets/edit"
   #get "sessions/new"
@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       put "dislike", to: "comments#dislike"
     end
   end
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
   resources :notifications
   get "/export_csv", to: "export_csv#index"
+  resources :conversations, only: %i[create]
+  resources :messages, only: %i[create]
 end
