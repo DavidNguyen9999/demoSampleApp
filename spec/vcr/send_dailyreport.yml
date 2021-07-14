@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://hooks.slack.com/services/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
+    body:
+      encoding: US-ASCII
+      string: payload=%7B%22channel%22%3A%22%23sampleapp%22%2C%22attachments%22%3A%5B%7B%22title%22%3A%22Error+report%22%7D%5D%7D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - hooks.slack.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 20 Jun 2021 15:33:52 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Slack-Backend:
+      - r
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      Vary:
+      - Accept-Encoding
+      Referrer-Policy:
+      - no-referrer
+      Content-Length:
+      - '22'
+      Content-Type:
+      - text/html
+      X-Envoy-Upstream-Service-Time:
+      - '40'
+      X-Backend:
+      - main_normal main_canary_with_overflow main_control_with_overflow
+      X-Server:
+      - slack-www-hhvm-main-iad-yxxe
+      X-Via:
+      - envoy-www-iad-t40b, haproxy-edge-sin-5rvc
+      X-Slack-Shared-Secret-Outcome:
+      - shared-secret
+      Via:
+      - envoy-www-iad-t40b
+    body:
+      encoding: ASCII-8BIT
+      string: ok
+  recorded_at: Sun, 20 Jun 2021 15:33:52 GMT
+recorded_with: VCR 6.0.0

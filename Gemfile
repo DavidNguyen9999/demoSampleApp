@@ -9,6 +9,15 @@ gem 'image_processing', '1.9.3'
 gem 'mini_magick', '4.9.5'
 gem 'active_storage_validations', '0.8.9'
 
+gem "slack-notifier"
+gem "exception_notification"
+gem 'async-websocket'
+
+gem 'vcr'
+gem 'webmock'
+
+gem 'whenever', :require => false
+
 # Login with Social Networking
 gem "devise"
 gem "omniauth", "~> 1.9.1"

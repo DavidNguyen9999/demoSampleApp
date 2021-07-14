@@ -12,4 +12,6 @@ class Comment < ApplicationRecord
 
   validates :user, presence: true
   validates :content, presence: true, length: { maximum: 140 }
+
+  scope :new_comment, -> { where(created_at: (Time.now - 1.day)..Time.now) }
 end
