@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   get "/export_csv", to: "export_csv#index"
   resources :conversations, only: %i[create]
   resources :messages, only: %i[create]
+  resources :discord, only: %i[create]
 end

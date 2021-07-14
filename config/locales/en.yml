@@ -44,3 +44,6 @@ en:
     name: Full Name
     content: Post
     created_at: Date
+  
+  discord_link: "Discord Link"
+  create_discord: "Create Discord Channel"

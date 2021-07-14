@@ -16,4 +16,12 @@ module ApplicationHelper
   def current_user?(user)
     user && user == current_user
   end
+
+  def discord_url(sender_id, recipient_id)
+    @conversation = Conversation.find_messenger(sender_id, recipient_id).first
+    @discord = Discord.find_by(recipient_id: @conversation.recipient_id)
+    return false if @discord.nil?
+
+    @url = @discord.discord_url
+  end
 end

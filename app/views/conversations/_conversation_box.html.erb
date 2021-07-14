@@ -13,6 +13,19 @@
   </div>
 
   <div id="list-massages-<%= conversation.id %>" class="chat-messages">
+    <h6 class="discord">
+      <% if discord_url current_user.id, recipient.id %>
+        <%= link_to @url, target: "_blank" do %>
+          <i class="fab fa-discord"></i>
+          <%= t ".discord_link" %>
+        <% end %>
+      <% else %>
+        <%= link_to discord_index_path(name: "#{recipient.name}", id: "#{recipient.id}"), method: :post do %>
+          <i class="fab fa-discord"></i>
+          <%= t ".create_discord" %>
+        <% end %>
+      <% end %>
+    </h6>
     <% if conversation.messages.any? %>
       <%= render conversation.messages %>
     <% end %>

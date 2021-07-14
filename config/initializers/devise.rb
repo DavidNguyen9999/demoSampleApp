@@ -42,4 +42,6 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, "612600325820-36tj0vf3di1403o6vg36lcpnct1r9s90.apps.googleusercontent.com", "hRASIStfzLiU9ueZmpiryO_J", scope: 'email,profile', image_aspect_ratio: 'square', image_size: 50, info_fields: 'email,name'
 
   config.omniauth :facebook, "1102717176874885", "5b647b1047ed5b4f99f4b2960712c702", scope: 'email,public_profile', info_fields: 'email,name'
+
+  config.omniauth :discord, "863722487312941067", "m62Vz1r1z9-mmoc9SnX7tErKVPCxQz_v", scope:'email identify', callback_url: 'https://localhost:3000/auth/discord/callback'
 end
